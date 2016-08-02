@@ -33,7 +33,7 @@ function formatMessage(result) {
                     message[key] = formatMessage(val)
                 }
                 else {
-                    message[key] === (val || '').trim()
+                    message[key] = (val || '').trim()
                 }
             }
             else {

@@ -55,7 +55,7 @@ module.exports = function(opts) {
 
               that.status = 200
               that.type = 'application/xml'
-              that.body = 
+              var reply = 
                 '<xml>'+
                   '<ToUserName><![CDATA['+ message.FromUserName +']]></ToUserName>'+
                   '<FromUserName><![CDATA['+ message.ToUserName +']]></FromUserName>'+
@@ -63,6 +63,8 @@ module.exports = function(opts) {
                   '<MsgType><![CDATA[text]]></MsgType>'+
                   '<Content><![CDATA[你好,LiecaiNet]]></Content>'+
                 '</xml>'
+              console.log(reply)
+              that.body = reply
 
               return
             }
