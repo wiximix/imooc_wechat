@@ -35,8 +35,8 @@ module.exports = function(opts) {
       }
         var data = yield getRawBody(this.req, {
           length: this.length,
-          limit:'1MB'
-          //encoding:this.charset
+          limit:'1MB',
+          encoding:this.charset
         })
 
         console.log(data.toString())
