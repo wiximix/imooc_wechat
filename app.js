@@ -25,5 +25,5 @@ var config = {
 var app = new Koa()
 app.use(wechat(config.wechat))
 
-app.listen(3000)
-console.log('listening 3000')
+app.listen(8080)
+console.log('listening 8080')
