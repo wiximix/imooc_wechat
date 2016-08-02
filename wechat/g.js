@@ -48,7 +48,7 @@ module.exports = function(opts) {
         var message = util.formatMessage(content.xml) 
           console.log(message)
 
-          if (message.MsgType === 'event') {
+          if (message.msgType === 'event') {
             if (message.Event=== 'subscribe') {
               var now = new Date().getTime()
 
