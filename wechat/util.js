@@ -36,12 +36,12 @@ function formatMessage(result) {
                     message[key] === (val || '').trim()
                 }
             }
-        }
-        else {
-            message[key] = []
+            else {
+                message[key] = []
 
-            for (var j = 0,k = item.length; j<k; j++) {
-                message[key].push(formatMessage(item[j]))
+                for (var j = 0,k = item.length; j<k; j++) {
+                    message[key].push(formatMessage(item[j]))
+                }
             }
         }
     }

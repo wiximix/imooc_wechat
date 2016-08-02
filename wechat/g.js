@@ -45,7 +45,7 @@ module.exports = function(opts) {
 
         console.log(content)
 
-        var message = util.formatMessage(content.xml)
+        var message = util.formatMessage(content.xml) 
           console.log(message)
 
           if (message.MsgType === 'event') {
