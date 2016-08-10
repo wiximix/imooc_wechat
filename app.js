@@ -2,7 +2,7 @@
 
 var Koa = require('koa')
 var path = require('path')
-var wechat = require('./libs/g')
+var wechat = require('./wechat/g')
 var util = require('./libs/util')
 var config = require('./config')
 var weixin = require('./wexin')
