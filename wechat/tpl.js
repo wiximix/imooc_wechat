@@ -11,24 +11,22 @@ var tpl = heredoc(function() {/*
         <MsgType><![CDATA[<% msgType %>]]></MsgType>
         <% if (msgType === 'test') { %>
             <Content><![CDATA[<%- content%>]]></Content>
-        <% } else if (msgType === 'image') {
+        <% } else if (msgType === 'image') { %>
             <Image>
                 <MediaId><![CDATA[<% content.media_id %>]]></MediaId>
             </Image>
-        } %>
-        <% } else if (msgType === 'voice') {
+        <% } else if (msgType === 'voice') { %>
             <Voice>
                 <MediaId><![CDATA[<% content.media_id %>]]></MediaId>
             </Voice>
-        } %>
-        <% } else if (msgType === 'video') {
+        <% } %>
+        <% } else if (msgType === 'video') { %>
             <Video>
                 <MediaId><![CDATA[<% content.media_id %>]]></MediaId>
                 <Title><![CDATA[<% content.title %>]]></Title>
                 <Description><![CDATA[<% content.description %>]]></Description>
             </Video>
-        } %>
-        <% } else if (msgType === 'music') {
+        <% } else if (msgType === 'music') { %>
             <Music>
                 <Title><![CDATA[<% content.title %>]]></Title>
                 <Description><![CDATA[<% content.description %>]]></Description>
@@ -36,11 +34,10 @@ var tpl = heredoc(function() {/*
                 <HQMusicUrl><![CDATA[<% content.hqMusicUrl %>]]></HQMusicUrl>
                 <ThumbMediaId><![CDATA[<% content.thumbMediaId %>]]></ThumbMediaId>
             </Music>
-        } %>
-        <% } else if (msgType === 'news') {
+        <% } else if (msgType === 'news') { %>
             <ArticleCount><% content.length %></ArticleCount>
             <Articles>
-                <% content.forEach(function(item) {
+                <% content.forEach(function(item) { %>
                     <item>
                         <Title><![CDATA[<% item.title %>]]></Title> 
                         <Description><![CDATA[<% item.description %>]]></Description>
@@ -53,7 +50,7 @@ var tpl = heredoc(function() {/*
     </xml>
 */})
 
-var compiled = ejs.compiled(tpl)
+var compiled = ejs.compile(tpl)
 
 exports = module.exports = {
     compiled: compiled
