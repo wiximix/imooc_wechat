@@ -29,7 +29,7 @@ function Wechat(opts) {
         return that.updateAccessToken()
       }
     })
-    .then(function(data) {
+    .then(function(  ) {
       that.access_token = data.access_token
       that.expires_in = data.expires_in
 
