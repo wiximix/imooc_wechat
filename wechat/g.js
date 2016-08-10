@@ -47,28 +47,13 @@ module.exports = function(opts) {
         console.log(content)
 
         var message = util.formatMessage(content.xml) 
-          console.log(message)
+        console.log(message)
+      
+        this.weixin = message
 
-          // if (message.MsgType === 'event') {
-          //   if (message.Event=== 'subscribe') {
-          //     var now = new Date().getTime()
+        yield handler.call(this, next)
 
-          //     that.status = 200
-          //     that.type = 'application/xml'
-          //     var reply = xml
-
-          //     console.log(reply)
-          //     that.body = reply
-
-          //     return
-          //   }
-          // }
-        
-          this.weixin = message
-
-          yield handler.call(this, next)
-
-          wechat.reply.call(this)
+        wechat.reply.call(this)
       }
     }
   }

@@ -3,7 +3,7 @@
 exports.reply = function* (next) {
     var message = this.weixin
 
-    if (message.msgType === 'event') {
+    if (message.MsgType === 'event') {
         if (message.Event === 'subscribe') {
             if (message.EventKey) {
                 console.log('扫二维码进来：' + message.EventKey + '' + message.ticket)
@@ -14,6 +14,7 @@ exports.reply = function* (next) {
         }
         else if (message.Event === 'unsubscribe') {
             console.log('i am so sad that u unsubscribe the wechat')
+            this.body = ''
         }
     }
     else {
