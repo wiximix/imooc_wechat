@@ -10,7 +10,7 @@ var tpl = heredoc(function() {/*
         <CreateTime> <% createTime %> </CreateTime>
         <MsgType><![CDATA[<% msgType %>]]></MsgType>
         <% if (msgType === 'test') { %>
-            <Content><![CDATA[<%- content%>]]></Content>
+            <Content><![CDATA[<%- content %>]]></Content>
         <% } else if (msgType === 'image') { %>
             <Image>
                 <MediaId><![CDATA[<% content.media_id %>]]></MediaId>
@@ -19,7 +19,6 @@ var tpl = heredoc(function() {/*
             <Voice>
                 <MediaId><![CDATA[<% content.media_id %>]]></MediaId>
             </Voice>
-        <% } %>
         <% } else if (msgType === 'video') { %>
             <Video>
                 <MediaId><![CDATA[<% content.media_id %>]]></MediaId>
