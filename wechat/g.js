@@ -7,7 +7,7 @@ var util = require('./util')
 //var handler = require('handler')
 
 
-module.exports = function(opts) {
+module.exports = function(opts,handler) {
   //var wechat = new Wechat(opts)
 
   return function*(next) {
@@ -54,7 +54,7 @@ module.exports = function(opts) {
 
         yield handler.call(this, next)
 
-        wechat.reply.call(this)
+        Wechat.reply.call(this)
       }
     }
   }
