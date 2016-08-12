@@ -8,7 +8,7 @@ var util = require('./util')
 
 
 module.exports = function(opts,handler) {
-  //var wechat = new Wechat(opts)
+  var wechat = new Wechat(opts)
 
   return function*(next) {
     //console.log(this.query)
@@ -47,14 +47,14 @@ module.exports = function(opts,handler) {
 
         console.log(content)
 
-        var message = util.formatMessage(content.xml) 
+        var message = util.formatMessage(content.xml)
         console.log(message)
-      
+
         this.weixin = message
 
         yield handler.call(this, next)
 
-        Wechat.reply.call(this)
+        wechat.reply.call(this)
       }
     }
   }
