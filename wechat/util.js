@@ -4,11 +4,11 @@ var xml2js = require('xml2js')
 var Promise = require('bluebird')
 var tpl = require('./tpl')
 
-exports.parseXMLAsync = function (xml) {
-    return new Promise(function(resolve,reject) {
-        xml2js.parseString(xml,{trim:true},function (err,content) {
-           if (err) reject(err)
-           else resolve(content) 
+exports.parseXMLAsync = function(xml) {
+    return new Promise(function(resolve, reject) {
+        xml2js.parseString(xml, { trim: true }, function(err, content) {
+            if (err) reject(err)
+            else resolve(content)
         })
     })
 }
@@ -32,44 +32,47 @@ function formatMessage(result) {
 
                 if (typeof val === 'object') {
                     message[key] = formatMessage(val)
-                }
-                else {
+                } else {
                     message[key] = (val || '').trim()
                 }
-            }
-            else {
+            } else {
                 message[key] = []
 
-                for (var j = 0,k = item.length; j<k; j++) {
+                for (var j = 0, k = item.length; j < k; j++) {
                     message[key].push(formatMessage(item[j]))
                 }
             }
         }
     }
-    
+
     return message
 }
 
 exports.formatMessage = formatMessage
 
-exports.tpl = function(content,message) {
+exports.tpl = function(content, message) { //此处的content应该是weixin处理后的this.body
+
+    console.log(content)
     var info = {}
     var type = 'text'
     var fromUserName = message.FromUserName
-    var toUserName = message.toUserName
+    var toUserName = message.ToUserName
 
     if (Array.isArray(content)) {
         type = 'news'
+    } else {
+
+        //content = content || {}
+        type = content.type || type
+        console.log('content.type:' + content.type)
+        console.log('type:' + type)
+        info.content = content
+        info.msgType = type
+        info.createTime = new Date().getTime()
+        info.toUserName = fromUserName
+        info.fromUserName = toUserName //fromUserName 
+
+        return tpl.compiled(info) //编译模板，传入info
     }
 
-    type = content.type || type
-    info.content = content
-    info.createTime = new Date().getTime()
-    info.msgType = type
-    info.toUserName = fromUserName
-    info.formatMessage = toUserName
-
-    return tpl.compiled(info)
-
 }
-
