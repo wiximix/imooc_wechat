@@ -60,19 +60,22 @@ exports.tpl = function(content, message) { //此处的content应该是weixin处�
 
     if (Array.isArray(content)) {
         type = 'news'
-    } else {
-
-        //content = content || {}
-        type = content.type || type
-        console.log('content.type:' + content.type)
-        console.log('type:' + type)
-        info.content = content
-        info.msgType = type
-        info.createTime = new Date().getTime()
-        info.toUserName = fromUserName
-        info.fromUserName = toUserName //fromUserName 
-
-        return tpl.compiled(info) //编译模板，传入info
     }
+    if (!content) {
+        content = 'Empty news'
+    }
+
+    //content = content || {}
+    type = content.type || type
+        //console.log('content.type:' + content.type)
+        //console.log('type:' + type)
+    info.content = content
+    info.msgType = type
+    info.createTime = new Date().getTime()
+    info.toUserName = fromUserName
+    info.fromUserName = toUserName //fromUserName 
+
+    return tpl.compiled(info) //编译模板，传入info
+
 
 }
